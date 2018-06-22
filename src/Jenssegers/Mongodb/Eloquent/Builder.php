@@ -44,7 +44,7 @@ class Builder extends EloquentBuilder
             return 1;
         }
 
-        return $this->query->update($this->addUpdatedAtColumn($values), $options);
+        return $this->toBase()->update($this->addUpdatedAtColumn($values), $options);
     }
 
     /**
@@ -157,7 +157,7 @@ class Builder extends EloquentBuilder
     public function raw($expression = null)
     {
         // Get raw results from the query builder.
-        $results = $this->query->raw($expression);
+        $results = $this->toBase()->raw($expression);
 
         // Convert MongoCursor results to a collection of models.
         if ($results instanceof Cursor) {
